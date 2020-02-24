@@ -92,7 +92,7 @@ Build a login form to authenticate your users.
 - [X] Construct an AXIOS request to retrieve a token from the server. You'll use this token to interact with the API
 - [X] Save the token to localStorage
 - [X] Build a `axiosWithAuth` module to create an instance of axios with the authentication header
-- [X] Build a `PrivateRoute` component and use it to protect a route that renders the `BubblesPage` component
+- [X] Build a `PrivateRoute` component and use it to protect a route that renders the `BubblePage` component
 
 ### Stage 2 - Consuming the API
 

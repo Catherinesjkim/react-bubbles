@@ -1,6 +1,7 @@
 // Stage 1 - Authentication
 // Step 1 - Construct an AXIOS request to retrieve a token from the server. You'll use this token to interact with the API
 // Step 2 - Save the token to localStorage
+// Build a login form to authenticate your users.
 import React, { useState } from "react";
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
@@ -39,10 +40,29 @@ const Login = props => {
   // when you have handled the token, navigate to the BubblePage route
   
   return (
-    <>
+    <section className="login">
       <h1>Welcome to the Bubble App!</h1>
-      <p>Build a login page here</p>
-    </>
+      <p>Please Enter Your Credentials</p>
+      <form className="forms" onSubmit={onSubmit}>
+        <input
+          className="input"
+          type="text"
+          name="username"
+          placeholder="Username"
+          value={login.username}
+          onChange={handleChange}
+        />
+        <input
+          className="input"
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={login.password}
+          onChange={handleChange}
+        />
+        <button>Login</button>
+      </form>
+    </section>
   );
 };
 
