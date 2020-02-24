@@ -1,5 +1,5 @@
 // Stage 2 - Consuming the API
-// When`BubblePages` renders, make a GET request to fetch the color data for your bubbles.
+// Step 1 - When`BubblePages` renders, make a GET request to fetch the color data for your bubbles.
 import React, { useState, useEffect } from "react";
 import Bubbles from "./Bubbles";
 import ColorList from "./ColorList";

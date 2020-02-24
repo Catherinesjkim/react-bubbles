@@ -1,5 +1,8 @@
+// Stage 2 - Consuming the API
+// Step 2 - In `ColorList.js`, complete the `saveEdit` and `deleteColor` functions to make AJAX requests to the API to edit/delete data
 import React, { useState } from "react";
-import axios from "axios";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { useHistory } from "react-router-dom";
 
 const initialColor = {
   color: "",
@@ -14,6 +17,7 @@ const ColorList = ({ colors, updateColors }) => {
   const editColor = color => {
     setEditing(true);
     setColorToEdit(color);
+    console.log(color);
   };
 
   const saveEdit = e => {
@@ -21,13 +25,38 @@ const ColorList = ({ colors, updateColors }) => {
     // Make a put request to save your updated color
     // think about where will you get the id from...
     // where is is saved right now?
+    axiosWithAuth()
+      .put(`/colors/${colorToEdit.id}`, colorToEdit)
+      .then(res => {
+        setColorToEdit(initialColor)
+        window.location.reload(false)
+      })
+      .catch(error => {
+        console.log("API Data Not Pulling In", error);
+      });
   };
 
   const deleteColor = color => {
     // make a delete request to delete this color
+    axiosWithAuth()
+      .delete(`/colors/${color.id}`)
+      .then(res => {
+        console.log(res);
+        window.location.reload(false);
+      })
+      .catch(err => console.log(err));
   };
 
+  const handleDelete = () => {
+    return (
+      localStorage.removeItem("token"),
+      history.pushState("/")
+    )
+  }
+
   return (
+    <div>
+    <button onClick={handleDelete}>Log Out</button>
     <div className="colors-wrap">
       <p>colors</p>
       <ul>
@@ -80,9 +109,10 @@ const ColorList = ({ colors, updateColors }) => {
           </div>
         </form>
       )}
+      </div >
       <div className="spacer" />
       {/* stretch - build another form here to add a color */}
-    </div>
+      </div>
   );
 };
 
