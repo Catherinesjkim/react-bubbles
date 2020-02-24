@@ -1,4 +1,5 @@
 // Stage 1 - Authentication
+// Step 1 - Construct an AXIOS request to retrieve a token from the server. You'll use this token to interact with the API
 // Step 2 - Save the token to localStorage
 import React, { useState } from "react";
 import { axiosWithAuth } from '../utils/axiosWithAuth';
