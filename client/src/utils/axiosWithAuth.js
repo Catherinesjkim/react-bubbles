@@ -1,6 +1,7 @@
 // Stage 1 - Authentication
 // Build a login form to authenticate my users.
-// Construct an AXIOS request to retrieve a token from the server. I'll use this token to interact with the API
+
+// Step 1 - Construct an AXIOS request to retrieve a token from the server. I'll use this token to interact with the API
 import axios from 'axios';
 
 export const axiosWithAuth = () => {
