@@ -1,5 +1,8 @@
 // Stage 2 - Consuming the API
 // Step 2 - In `ColorList.js`, complete the `saveEdit` and `deleteColor` functions to make AJAX requests to the API to edit/delete data
+
+// HTTP/Axios Stretch Problems
+// Build a form at the bottom of `ColorList.js` to add new colors to the colors data
 import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
@@ -13,6 +16,8 @@ const ColorList = ({ colors, updateColors }) => {
   console.log(colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
+  const [sparkly, setSparkly] = useState(initialColor);
+  const history = useHistory()
 
   const editColor = color => {
     setEditing(true);
@@ -45,6 +50,18 @@ const ColorList = ({ colors, updateColors }) => {
         window.location.reload(false);
       })
       .catch(err => console.log(err));
+  };
+
+  const addBubble = e => {
+    e.preventDefault();
+    setSparkly({ ...sprakly });
+    axiosWithAuth()
+      .post("/colors", sparkly)
+      .then(res => {
+        setSparkly(initialColor);
+        window.location.reload(false);
+      })
+      .catch(err => console.log("No bubbles, sorry", err));
   };
 
   const handleDelete = () => {
@@ -109,10 +126,39 @@ const ColorList = ({ colors, updateColors }) => {
           </div>
         </form>
       )}
-      </div >
-      <div className="spacer" />
-      {/* stretch - build another form here to add a color */}
       </div>
+      {/* stretch - build another form here to add a color */}
+      <form onSubmit={addBubble}>
+        <legen>Add Button</legen>
+        <label>
+          Color Name:
+          <input
+            onChange={e => 
+              setSparkly({
+                ...sparkly,
+                color: e.target.value
+              })
+            }
+            value={sparkly.color}
+          />
+        </label>
+        <label>
+          Hex Code:
+          <input
+            type="color"
+            onChange={e =>
+              setSparkly({
+                ...sparkly,
+                code: { hex: e.target.value },
+              })}
+              value={sparkly.code.hex}
+          />
+        </label>
+        <div className="button-row">
+          <button type="submit">Add Bubble</button>
+        </div>
+      </form>
+    </div>
   );
 };
 
