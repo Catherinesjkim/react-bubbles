@@ -54,7 +54,7 @@ const ColorList = ({ colors, updateColors }) => {
 
   const addBubble = e => {
     e.preventDefault();
-    setSparkly({ ...sprakly });
+    setSparkly({ ...sparkly });
     axiosWithAuth()
       .post("/colors", sparkly)
       .then(res => {
@@ -67,7 +67,7 @@ const ColorList = ({ colors, updateColors }) => {
   const handleDelete = () => {
     return (
       localStorage.removeItem("token"),
-      history.pushState("/")
+      history.push("/")
     )
   }
 
@@ -129,7 +129,7 @@ const ColorList = ({ colors, updateColors }) => {
       </div>
       {/* stretch - build another form here to add a color */}
       <form onSubmit={addBubble}>
-        <legen>Add Button</legen>
+        <legen>Add Bubble</legen>
         <label>
           Color Name:
           <input

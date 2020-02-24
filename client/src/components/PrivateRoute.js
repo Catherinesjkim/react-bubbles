@@ -1,6 +1,6 @@
 // Stage 1 - Authentication
 // Step 4 - Build a `PrivateRoute` component and use it to protect a route that renders the`BubblesPage` component
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 // Three rules when building a PrivateRoute component
@@ -17,7 +17,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           return <Component />;
           // push to component prop
         } else {
-          return <Redirect to="/login" />;
+          return <Redirect to="/" />;
         }
       }}
     />
